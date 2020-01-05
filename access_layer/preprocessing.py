@@ -81,9 +81,19 @@ class PreProcessing:
 
         return True
 
+    @staticmethod
+    def split_channels(image):
+        assert len(image.shape) == 3 and image.shape[-1] == 3
+        return np.squeeze(np.split(image, image.shape[-1], -1), axis=-1)
+
     def load_all(self):
 
         for file in self.get_files():
             self.load_single(file)
 
+        rgb_shape = list()
+        for sample in self.x:
+            rgb_shape.append(self.split_channels(sample))
+
+        self.x = rgb_shape
         return self.x, self.y

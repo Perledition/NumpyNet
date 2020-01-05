@@ -1,69 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b364e923-cf92-445e-b32e-8f3d8ea42cea" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="b364e923-cf92-445e-b32e-8f3d8ea42cea" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/description.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NumpyNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NumpyNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/access_layer/classifer.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/classifer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/access_layer/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layer/network_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/network_layer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layer/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/processing.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.41785106">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/access_layer/classifer.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-                  <folding>
-                    <element signature="e#26#39#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/access_layer/preprocessing.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1660">
-                  <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/layer/network_layer.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
-                  <folding>
-                    <element signature="e#113#2294#0" />
-                    <element signature="e#2325#3272#0" />
-                    <element signature="e#3575#3844#0" />
-                    <element signature="e#6163#6369#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/layer/processing.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="260">
-                  <caret line="13" selection-start-line="13" selection-end-line="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -72,67 +24,20 @@
       </list>
     </option>
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/manager/organizer.py" />
-        <option value="$PROJECT_DIR$/layer/network_layer.py" />
-        <option value="$PROJECT_DIR$/layer/processing.py" />
-        <option value="$PROJECT_DIR$/access_layer/preprocessing.py" />
-        <option value="$PROJECT_DIR$/access_layer/classifer.py" />
-      </list>
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="859" />
-    <option name="y" value="170" />
-    <option name="width" value="1980" />
-    <option name="height" value="1135" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="NumpyNet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NumpyNet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NumpyNet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NumpyNet" type="462c0819:PsiDirectoryNode" />
-              <item name="access_layer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NumpyNet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NumpyNet" type="462c0819:PsiDirectoryNode" />
-              <item name="layer" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectId" id="1ViWLCuGLxFkpBD3LbLG4wYlBE6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../detective" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python.classifer">
     <configuration name="classifer" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -147,6 +52,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/access_layer/classifer.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -168,6 +74,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/access_layer/preprocessing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -184,6 +91,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -194,81 +113,50 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1576679361338</updated>
+      <workItem from="1577736340379" duration="1419000" />
+      <workItem from="1577798394459" duration="474000" />
+      <workItem from="1577979195254" duration="599000" />
+      <workItem from="1578084441720" duration="4639000" />
+      <workItem from="1578138589131" duration="7588000" />
+      <workItem from="1578148202400" duration="6240000" />
+      <workItem from="1578240483158" duration="2155000" />
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="859" y="170" width="1980" height="1135" extended-state="0" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08599382" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.22926448" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="GraphQL" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="11" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/manager/organizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/access_layer/my.png" />
-    <entry file="file://$PROJECT_DIR$/access_layer/sample_2.png" />
-    <entry file="file://$PROJECT_DIR$/access_layer/sample_1.png" />
-    <entry file="file://$PROJECT_DIR$/access_layer/sample_0.png" />
-    <entry file="file://$PROJECT_DIR$/access_layer/sample_gray_0.png" />
-    <entry file="file://$PROJECT_DIR$/access_layer/classifer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-          <folding>
-            <element signature="e#26#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/access_layer/preprocessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1660">
-          <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/layer/network_layer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
-          <folding>
-            <element signature="e#113#2294#0" />
-            <element signature="e#2325#3272#0" />
-            <element signature="e#3575#3844#0" />
-            <element signature="e#6163#6369#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/layer/processing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="846" y="317" key="#classifer" timestamp="1578139507662">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="846" y="317" key="#classifer/0.0.3440.1400@0.0.3440.1400" timestamp="1578139507662" />
+    <state x="903" y="440" key="FileChooserDialogImpl" timestamp="1578090000432">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="903" y="440" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1578090000432" />
+    <state width="2183" height="383" key="GridCell.Tab.0.bottom" timestamp="1578242470873">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="2183" height="383" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1578242470873" />
+    <state width="2183" height="383" key="GridCell.Tab.0.center" timestamp="1578242470873">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="2183" height="383" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1578242470873" />
+    <state width="2183" height="383" key="GridCell.Tab.0.left" timestamp="1578242470873">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="2183" height="383" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1578242470873" />
+    <state width="2183" height="383" key="GridCell.Tab.0.right" timestamp="1578242470873">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="2183" height="383" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1578242470873" />
+    <state x="749" y="415" key="SettingsEditor" timestamp="1578150542447">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="749" y="415" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1578150542447" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/NumpyNet$classifer.coverage" NAME="classifer Coverage Results" MODIFIED="1578242470862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/access_layer" />
   </component>
 </project>

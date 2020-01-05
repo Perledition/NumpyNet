@@ -10,6 +10,7 @@ from layer.processing import Sequential
 from layer.network_layer import *
 
 
+# network assumes quadratic format of input
 class NumpyObjectClassifier:
 
     def __init__(self, version='latest', pool_size=2):
@@ -24,21 +25,34 @@ class NumpyObjectClassifier:
         pass
 
 
-x, y = PreProcessing(r'C:\Users\Maxim\Downloads\cifar-10-batches-py').load_all()
+x, y = PreProcessing(r'C:\Users\Maxim\Documents\Studium\Semester\Semester I\DataScience\Studienleistung\cifar-10-batches-py').load_all()
 
-model = Sequential([
-    ConvolutionalLayer(),
-    ActivationLayer(),
-    ConvolutionalLayer(),
-    ActivationLayer(),
-    PoolingLayer(),
-    DropoutLayer(),
-    Flatten(),
-    DenseLayer(),
-    ActivationLayer(),
-    DropoutLayer(),
-    DenseLayer(),
-    ActivationLayer(activation_type='softmax')
-]).train(x[0])
+"""
+model = Sequential(
+    [
+        ConvolutionalLayer(),
+        ActivationLayer(),
+        ConvolutionalLayer(),
+        ActivationLayer(),
+        PoolingLayer(),
+        DropoutLayer(),
+        Flatten(),
+        DenseLayer(),
+        ActivationLayer(),
+        DropoutLayer(),
+        DenseLayer(),
+        ActivationLayer(activation_type='softmax')
+    ],
+    epochs=100
+)
 
-print(model)
+model.train(x[0])
+"""
+
+print(x[0].shape)
+cl = ConvolutionalLayer().assign(x[0:2])
+print(cl.shape)
+cl = ActivationLayer().assign(cl)
+print(cl.shape)
+cl = ConvolutionalLayer().assign(cl)
+print(cl.shape)

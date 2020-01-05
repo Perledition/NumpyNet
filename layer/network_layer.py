@@ -1,5 +1,7 @@
 # import standard modules
+import os
 import math
+import uuid
 
 # import third party modules
 import numpy as np
@@ -116,6 +118,126 @@ class DropoutLayer:
 
 
 class ConvolutionalLayer:
+
+    def __init__(self, border_mode='valid', filter_size=3, filter_count=32, layer_id=None):
+
+        # make border mode a global variable of the class and do quality check beforehand
+        # With border mode "valid"/"zero" you get an output that is smaller than the input because the convolution is
+        # only computed where the input and the filter fully overlap.
+
+        assert border_mode in ['half', 'same', 'valid', 'zero'],\
+            "border_mode is not supported please choose half, same, valid or zero"  # quality check of border mode
+
+        self.border_mode = border_mode  # defines padding for input data
+        self.filter_count = filter_count  # defines how many filters will be initialized for this Layer
+        self.filter_size = filter_size  # defines the shape of the one filter e.g. size 3 means a 3x3 kernel/filter
+
+        # assign random layer id code to the layer to make temp files and results locatable
+        if layer_id is None:
+            self.layer_id = uuid.uuid1()
+            self.kernels = self.initialize_filters()
+
+        # assign known layer id in case structure is reused for prediction or to assign pre trained filters
+        else:
+            self.layer_id = layer_id
+            self.kernels = self.load_filters()
+
+    def conv_2d(self, x, kernel):
+        """
+        Takes a data batch and a kernel an creates for each sample a channel x width x height array
+        therefore a output of batch_size x channel x width - 2 x height - 2 array as convolved feature
+        :param data: batch
+        :param kernel: filter to be applied to the data - has to be one filter at a time
+        :return:
+        """
+
+        # TODO: Add border mode feature
+        # create 0 padding around the given data
+        if self.border_mode in ['half', 'same']:
+
+            # get shape of current input
+            c, h, w = x.shape
+
+            # create a temp zero filled array with an padding of one on each side
+            padded_array = np.zero((c, h + 2, w + 2))
+
+            # assign the real data of each channel into the padded_array
+            for i in range(3):
+                padded_array[i, 1:h+1, 1:w+1] = x
+
+            data = padded_array
+
+        # if no padding assign variable data with x
+        else:
+            data = x
+
+        conv_features = [0 for _ in range(0, len(data))]
+
+        # iterate through each sample and apply all 32 filters to it
+        for idx, sample in enumerate(data):
+
+            # create a temp array to save the resulting calculations
+            channels, width, height = sample.shape
+            result = np.zeros((channels, width - 2, height - 2))
+
+            # apply window slicing process over all three channels with a kernel for each channel
+            for row in range(0, height-2):
+                rs = 0 + row  # starting point in row for this window
+                re = self.filter_size + row  # endpoint in row for this window
+
+                for column in range(0, width-2):
+                    cs = 0 + column  # starting point in column for this window
+                    ce = self.filter_size + column  # endpoint in column for this window
+
+                    for channel in range(0, channels):
+                        # assign sum of multiplication process to the resulting array
+                        # Mathematically, it’s (2 * 1) + (0 * 0) + (1 * 1) = 3 TODO: implement real formula
+                        result[channel, row, column] = np.sum(sample[channel, rs:re, cs:ce] * kernel[channel])
+
+            conv_features[int(idx)] = result
+
+        return np.array(conv_features)
+
+    # kernel and filters are the same
+    def initialize_filters(self):
+        # create random filter shapes by default 32 filters with a size of 3 channels x 3 width x 3 height
+        # the cnn assumes always 3 channels
+        kernels = [np.random.randint(-1, 2, size=(3, self.filter_size, self.filter_size))
+                   for _ in range(32)]
+
+        # save a temp file in which the filters will be saved for later usage
+        self.write_filters(kernels)
+        return kernels
+
+    def load_filters(self):
+
+        # create the path to load from and load a npy file with the kernels
+        path = '/'.join(folder for folder in os.getcwd().split('\\')[:-1])
+        path = os.path.join(path, f'temps/temp_{self.layer_id}.npy')
+        return np.load(path)
+
+    def write_filters(self, filters):
+
+        # create the right path to save the data to and save kernels as npy file
+        path = '/'.join(folder for folder in os.getcwd().split('\\')[:-1])
+        path = os.path.join(path, f'temps/temp_{self.layer_id}.npy')
+        np.save(path, filters)
+
+    def assign(self, x):
+        conv_features = None
+        for filter in self.kernels:
+
+            if conv_features is None:
+                conv_features = np.array([self.conv_2d(x, filter)])
+
+            else:
+                features = self.conv_2d(x, filter)
+                conv_features = np.append(conv_features, [features], axis=0)
+
+        return conv_features
+
+
+class ConvolutionalLayerOld:
 
     def __init__(self, layers, index=0, border_mode='full'):
         self.border_mode = border_mode
