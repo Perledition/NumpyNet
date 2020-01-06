@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b364e923-cf92-445e-b32e-8f3d8ea42cea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/description.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/NumpyNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NumpyNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/access_layer/classifer.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/classifer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_layer/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/description.md" beforeDir="false" afterPath="$PROJECT_DIR$/description.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/layer/network_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/network_layer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layer/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temps/temp_172ce25e-2fda-11ea-8831-9cb6d0fe269c.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temps/temp_17e4aa38-2fda-11ea-bcb5-9cb6d0fe269c.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temps/temp_2eff44a8-2fda-11ea-b37b-9cb6d0fe269c.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temps/temp_2fa2e09e-2fda-11ea-9855-9cb6d0fe269c.npy" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +61,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="network_layer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NumpyNet" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/layer" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/layer/network_layer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="preprocessing" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="NumpyNet" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,6 +108,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.classifer" />
+        <item itemvalue="Python.network_layer" />
         <item itemvalue="Python.preprocessing" />
       </list>
     </recent_temporary>
@@ -119,7 +141,11 @@
       <workItem from="1578084441720" duration="4639000" />
       <workItem from="1578138589131" duration="7588000" />
       <workItem from="1578148202400" duration="6240000" />
-      <workItem from="1578240483158" duration="2155000" />
+      <workItem from="1578240483158" duration="7091000" />
+      <workItem from="1578248739353" duration="2833000" />
+      <workItem from="1578327199762" duration="633000" />
+      <workItem from="1578327850857" duration="5193000" />
+      <workItem from="1578338237838" duration="1605000" />
     </task>
     <servers />
   </component>
@@ -135,28 +161,29 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="903" y="440" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1578090000432" />
-    <state width="2183" height="383" key="GridCell.Tab.0.bottom" timestamp="1578242470873">
+    <state width="1819" height="167" key="GridCell.Tab.0.bottom" timestamp="1578339853743">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2183" height="383" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1578242470873" />
-    <state width="2183" height="383" key="GridCell.Tab.0.center" timestamp="1578242470873">
+    <state width="1819" height="167" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1578339853743" />
+    <state width="1819" height="167" key="GridCell.Tab.0.center" timestamp="1578339853743">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2183" height="383" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1578242470873" />
-    <state width="2183" height="383" key="GridCell.Tab.0.left" timestamp="1578242470873">
+    <state width="1819" height="167" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1578339853743" />
+    <state width="1819" height="167" key="GridCell.Tab.0.left" timestamp="1578339853742">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2183" height="383" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1578242470873" />
-    <state width="2183" height="383" key="GridCell.Tab.0.right" timestamp="1578242470873">
+    <state width="1819" height="167" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1578339853742" />
+    <state width="1819" height="167" key="GridCell.Tab.0.right" timestamp="1578339853743">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2183" height="383" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1578242470873" />
+    <state width="1819" height="167" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1578339853743" />
     <state x="749" y="415" key="SettingsEditor" timestamp="1578150542447">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="749" y="415" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1578150542447" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/NumpyNet$classifer.coverage" NAME="classifer Coverage Results" MODIFIED="1578242470862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/access_layer" />
+    <SUITE FILE_PATH="coverage/NumpyNet$classifer.coverage" NAME="classifer Coverage Results" MODIFIED="1578339644188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/access_layer" />
+    <SUITE FILE_PATH="coverage/NumpyNet$network_layer.coverage" NAME="network_layer Coverage Results" MODIFIED="1578245656549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/layer" />
   </component>
 </project>

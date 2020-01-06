@@ -14,3 +14,8 @@ http://www.cs.toronto.edu/~kriz/cifar.html
 
 NumpyNet always assumes quadratic input data - image shape like 32x32
 and 3 channels per image like rgb
+
+### Things which could be improved - quick wins
+1. Multithreading to improve overall speed
+2. Advanced matrix multiplication to reduce for loops
+3. remove dependency of quadratic images (width==height)

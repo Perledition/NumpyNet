@@ -12,51 +12,48 @@ class PoolingLayer:
     Assumes square format
     """
 
-    def __init__(self, features, pool_size=2, pooling_type='max'):
+    def __init__(self, pool_size=2, pooling_type='max'):
         self.pool_size = pool_size
-        self.features = features
-        self.nearby_features, self.nearby_images, self.feature_dimension = features.shape
-        self.resulting_dimension = int(self.feature_dimension / pool_size)
-        self.pooling = {'max': np.max, 'min': np.min}[pooling_type]
+        self.pooling = {'max': np.max, 'min': np.min, 'mean': np.mean}[pooling_type]
 
-    def feature_loop(self, pooling_results):
+    def pool_2d(self, feature):
 
-        # execute the max pooling process for each image in handed over features
-        for image in range(self.nearby_images):
+        # create a temp array to save the resulting calculations
+        channels, width, height = feature.shape
+        result = np.zeros((channels, int(width/self.pool_size), int(height/self.pool_size)))
 
-            # for each channel in an image array
-            for feature in range(self.nearby_features):
+        # apply window slicing process over all three channels with a kernel for each channel
+        for row in range(0, int(height/self.pool_size)):
+            rs = 0 + row  # starting point in row for this window
+            re = self.pool_size + row  # endpoint in row for this window
 
-                # hovering or window sliding process is defined by rows and columns to assign
-                for row in range(self.resulting_dimension):
+            for column in range(0, int(width/self.pool_size)):
+                cs = 0 + column  # starting point in column for this window
+                ce = self.pool_size + column  # endpoint in column for this window
 
-                    # define positions on row level
-                    row_starting_point = row * self.pool_size
-                    row_end_point = row + self.pool_size
+                for channel in range(0, channels):
+                    # assign the max, min, avg value of the current window to the resulting array space
+                    result[channel, row, column] = self.pooling(feature[channel, rs:re, cs:ce])
 
-                    for col in range(self.resulting_dimension):
+        return np.array(result)
 
-                        # define positions on column level
-                        col_starting_point = col * self.pool_size
-                        col_end_point = col + self.pool_size
+    def assign(self, x):
 
-                        # based on rows, columns, image and channel extract a patch of values from the image
-                        patch = self.features[feature, image,
-                                              row_starting_point:row_end_point,
-                                              col_starting_point:col_end_point]
+        # get current dimensions of the image features and divide it's width and height be pool size to get output dim's
+        resulting_dim = list(x.shape)
+        resulting_dim[-2:] = [int(resulting_dim[-2]/self.pool_size), int(resulting_dim[-2]/self.pool_size)]
 
-                        # reduce patch by type and assign result to output matrix
-                        pooling_results[feature, image, row, col] = self.pooling(patch)
-
-        return pooling_results
-
-    def assign(self):
         # initialize our more dense feature list as empty array
-        pool_features = np.zeros((self.nearby_features, self.nearby_images,
-                                  self.feature_dimension, self.feature_dimension))
+        pool_features = np.zeros(tuple(resulting_dim))
+
+        # iterate over each sample given in x (sample, tensor_dimension, channels, height, width)
+        for idx, sample in enumerate(x):
+            # iterate over each tensor dimension (tensor_dimension, channels, height, width)
+            for tdx, tensor_dim in enumerate(sample):
+                pool_features[idx, tdx] = self.pool_2d(tensor_dim)
 
         # run process for each image in feature and return the filled feature array
-        return self.feature_loop(pool_features)
+        return pool_features
 
 
 class ActivationLayer:
@@ -142,7 +139,7 @@ class ConvolutionalLayer:
             self.layer_id = layer_id
             self.kernels = self.load_filters()
 
-    def conv_2d(self, x, kernel):
+    def conv_2d(self, x):
         """
         Takes a data batch and a kernel an creates for each sample a channel x width x height array
         therefore a output of batch_size x channel x width - 2 x height - 2 array as convolved feature
@@ -151,7 +148,6 @@ class ConvolutionalLayer:
         :return:
         """
 
-        # TODO: Add border mode feature
         # create 0 padding around the given data
         if self.border_mode in ['half', 'same']:
 
@@ -171,13 +167,13 @@ class ConvolutionalLayer:
         else:
             data = x
 
-        conv_features = [0 for _ in range(0, len(data))]
+        conv_features = [0 for _ in range(0, len(self.kernels))]
 
-        # iterate through each sample and apply all 32 filters to it
-        for idx, sample in enumerate(data):
+        # iterate through all 32 filters and apply it on the given sample
+        for idx, kernel in enumerate(self.kernels):
 
             # create a temp array to save the resulting calculations
-            channels, width, height = sample.shape
+            channels, width, height = data.shape
             result = np.zeros((channels, width - 2, height - 2))
 
             # apply window slicing process over all three channels with a kernel for each channel
@@ -192,7 +188,7 @@ class ConvolutionalLayer:
                     for channel in range(0, channels):
                         # assign sum of multiplication process to the resulting array
                         # Mathematically, it’s (2 * 1) + (0 * 0) + (1 * 1) = 3 TODO: implement real formula
-                        result[channel, row, column] = np.sum(sample[channel, rs:re, cs:ce] * kernel[channel])
+                        result[channel, row, column] = np.sum(data[channel, rs:re, cs:ce] * kernel[channel])
 
             conv_features[int(idx)] = result
 
@@ -224,81 +220,60 @@ class ConvolutionalLayer:
         np.save(path, filters)
 
     def assign(self, x):
+        """
+        assign function is the main loop for the ConvolutionalLayer class and will be the only public used function
+        from other classes like Sequential. The function is designed to process a batch of 3d arrays with shape like:
+        (samples, channels, width, height). However, to use assign accordingly x must be at least a single 3d array.
+        The function will iterate through each sample and apply the conv_2d method for each sample with each filter.
+
+        :param x: (np.array): at least 3d numpy array with training data, 4d recommended: collection of 3d arrays
+        :return: (np.array): resulting convolved features for each sample provided to assign
+        """
+
+        # initialize placeholder variable for returning values
         conv_features = None
-        for filter in self.kernels:
+
+        # iterate over each sample and apply convolution
+        for nr, sample in enumerate(x):
+
+            # initialize placeholder variable for an array which will hold all applied filter operations for one sample
+            kernel_run_features = None
+
+            # add a kernel_dimension of one in case it's the first convolution iteration
+            if len(sample.shape) < 4:
+                sample = np.array([sample])
+
+            # loop over each dimension of the given sample
+            # in case of single image this is one (1, channels, width, height) but with 32 filters applied in a previous
+            # step it would be a tensor of (32, channels, width, height)
+            for tensor_dimension in sample:
+
+                if kernel_run_features is None:
+                    # gives (32, channels, width, height)
+                    kernel_run_features = self.conv_2d(tensor_dimension)
+
+                else:
+                    # return (32, channels, width, height)
+                    features = self.conv_2d(tensor_dimension)
+
+                    # concat features so the output for the example above would be (64, channels, width, height)
+                    kernel_run_features = np.append(kernel_run_features, features, axis=0)
 
             if conv_features is None:
-                conv_features = np.array([self.conv_2d(x, filter)])
+                # return kernel_count x kernel_count, 3, 30, 30
+                conv_features = np.array([kernel_run_features])
 
             else:
-                features = self.conv_2d(x, filter)
-                conv_features = np.append(conv_features, [features], axis=0)
+                # return kernel_count x kernel_count, 3, 30, 30
+                conv_features = np.append(conv_features, [kernel_run_features], axis=0)
+
+            # status update
+            if nr == len(x) - 1:
+                print(f'Conv: {"="*100 + ">"}|{nr}/{len(x)}')
+            else:
+                print(f'Conv: {"="*(100 - int((1 - (nr + 1/len(x)))*100))+ ">" +  " "*int((1 - (nr + 1/len(x)))*100)}|{nr+1}/{len(x)}')
 
         return conv_features
-
-
-class ConvolutionalLayerOld:
-
-    def __init__(self, layers, index=0, border_mode='full'):
-        self.border_mode = border_mode
-        self.layers = layers
-        self.index = index
-
-    def conv_2d(self, image, feature):
-        image_dim = np.array(image.shape)
-        feature_dim = np.array(feature.shape)
-        target_dim = image_dim + feature_dim - 1
-        operation_result = np.fft.fft2(image, target_dim) * np.fft.fft2(feature, target_dim)
-        target = np.fft.ifft2(operation_result).real
-
-        if self.border_mode is 'valid':
-            # To compute a valid shape, either np.all(x_shape >= y_shape) or
-            # np.all(y_shape >= x_shape).
-            valid_dim = image_dim - feature_dim + 1
-            if np.any(valid_dim < 1):
-                valid_dim = feature_dim - image_dim + 1
-            start_i = (target_dim - valid_dim) // 2
-            end_i = start_i + valid_dim
-            target = target[start_i[0]:end_i[0], start_i[1]:end_i[1]]
-        return target
-
-    def assign(self, x):
-        features = self.layers[self.index]['parameter_0']
-        bias = self.layers[self.index]['parameter_1']
-
-        patch_dim = features[0].shape[-1]
-        nearby_features = features.shape[0]
-        image_dim = x.shape[2]  # assume image square
-        channels = x.shape[1]
-        nearby_images = x.shape[0]
-
-        assert self.border_mode in ['valid', 'full'], f'border mode {self.border_mode} is not supported. valid or full'
-
-        if self.border_mode is 'full':
-            conv_dim = image_dim + patch_dim - 1
-
-        elif self.border_mode is 'valid':
-            conv_dim = image_dim - patch_dim + 1
-
-        else:
-            conv_dim = image_dim
-
-        results = np.zeros((nearby_images, nearby_features, conv_dim, conv_dim))
-
-        for image in range(nearby_images):
-            for feature in range(nearby_features):
-
-                conv_image = np.zeros((conv_dim, conv_dim))
-
-                for channel in range(channels):
-
-                    feature = features[feature, channel, :, :]
-                    image = x[image, channel, :, :]
-                    conv_image += self.conv_2d(image, feature)
-
-                conv_image = conv_image + bias[feature]
-                results[image, feature, :, :] = conv_image
-        return results
 
 
 class Flatten:
