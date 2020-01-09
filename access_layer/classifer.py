@@ -11,20 +11,6 @@ from layer.network_layer import *
 
 
 # network assumes quadratic format of input
-class NumpyObjectClassifier:
-
-    def __init__(self, version='latest', pool_size=2):
-        super().__init__(version)
-        self.weights = pickle.load(open(self.stack_path('model', f'weights_{version}.pk1')))
-        self.pool_size = pool_size
-
-    def transform_predict(self):
-        pass
-
-    def transform_retrain(self):
-        pass
-
-
 x, y = PreProcessing(r'C:\Users\Maxim\Documents\Studium\Semester\Semester I\DataScience\Studienleistung\cifar-10-batches-py').load_all()
 
 """
@@ -57,8 +43,7 @@ cl = ActivationLayer().assign(cl)
 print(cl.shape)
 cl = PoolingLayer().assign(cl)
 print(cl.shape)
-#cl = DropoutLayer().assign(cl)
-#print(cl.shape)
-#print(cl)
-# cl = Flatten().assign(cl)
-# print(cl.shape)
+cl = Flatten().assign(cl)
+cl = DenseLayer().assign(cl)
+cl = DenseLayer(activation_type='softmax').assign(cl)
+print(cl)

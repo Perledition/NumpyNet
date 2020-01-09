@@ -7,6 +7,7 @@ class Sequential:
     def __init__(self, layers, epochs=100):
         self.layers = layers
         self.epochs = epochs
+        self.crossentropy = None
 
     def print_process(self):
         pass

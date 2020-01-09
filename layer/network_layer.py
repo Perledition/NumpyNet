@@ -89,16 +89,74 @@ class ActivationLayer:
         return self.activation[self.activation_type](x)
 
 
-class DenseLayer:
+class DenseLayer(ActivationLayer):
 
-    def __init__(self, layers, index):
-        self.layers = layers
-        self.index = index
+    def __init__(self, nodes=2, learning_rate=0.1, activation_type='relu', layer_id=None):
+        super().__init__(activation_type)
+        self.learning_rate = learning_rate
+        self.nodes = nodes
+        self.new_layer = True
+        self.weights, self.bias = None, None
+
+        # assign random layer id code to the layer to make temp files and results locatable
+        if layer_id is None:
+            self.layer_id = uuid.uuid1()
+
+        # assign known layer id in case structure is reused for prediction or to assign pre trained filters
+        else:
+            self.layer_id = layer_id
+            self.new_layer = False
+
+    def initialize_weights(self, input_dim):
+        weights = np.random.rand(self.nodes, input_dim) * 0.01
+        bias = np.zeros((self.nodes, 1))
+        return weights, bias
+
+    def forward(self, x):
+        z = np.dot(self.weights, x.transpose()) + self.bias
+        return self.activation[self.activation_type](z)
+
+    def backward(self):
+        pass
+
+    def load_weights(self):
+
+        # create the path to load from and load a npy file with the kernels
+        path = '/'.join(folder for folder in os.getcwd().split('\\')[:-1])
+        path = os.path.join(path, f'temps/temp_weights_{self.layer_id}.npy')
+        return np.load(path)
+
+    def load_bias(self):
+        # create the path to load from and load a npy file with the kernels
+        path = '/'.join(folder for folder in os.getcwd().split('\\')[:-1])
+        path = os.path.join(path, f'temps/temp_bias_{self.layer_id}.npy')
+        return np.load(path)
+
+    def write_weights(self, weights, extension='weights'):
+
+        # create the right path to save the data to and save kernels as npy file
+        path = '/'.join(folder for folder in os.getcwd().split('\\')[:-1])
+        path = os.path.join(path, f'temps/temp_{extension}_{self.layer_id}.npy')
+        np.save(path, weights)
 
     def assign(self, x):
-        w = self.layers[self.index]['parameter_0']
-        b = self.layers[self.index]['parameter_1']
-        return np.dot(x, w) + b
+
+        # get the number of samples, how many filters are and how many features coming in for each node
+        samples, features = x.shape
+
+        # get weights to work with
+        # initialize new weights in case of a new initialized layer without any weights created yet
+        if self.new_layer:
+            self.weights, self.bias = self.initialize_weights(features)
+            self.write_weights(self.weights)
+            self.write_weights(self.bias, 'bias')
+
+        # load weights from file in case the Layer was created and used before
+        else:
+            self.weights = self.load_weights()
+            self.bias = self.load_bias()
+
+        return self.forward(x)
 
 
 class DropoutLayer:
@@ -116,7 +174,7 @@ class DropoutLayer:
 
 class ConvolutionalLayer:
 
-    def __init__(self, border_mode='valid', filter_size=3, filter_count=32, layer_id=None):
+    def __init__(self, border_mode='valid', filter_size=3, filter_count=3, layer_id=None):
 
         # make border mode a global variable of the class and do quality check beforehand
         # With border mode "valid"/"zero" you get an output that is smaller than the input because the convolution is
@@ -199,7 +257,7 @@ class ConvolutionalLayer:
         # create random filter shapes by default 32 filters with a size of 3 channels x 3 width x 3 height
         # the cnn assumes always 3 channels
         kernels = [np.random.randint(-1, 2, size=(3, self.filter_size, self.filter_size))
-                   for _ in range(32)]
+                   for _ in range(self.filter_count)]
 
         # save a temp file in which the filters will be saved for later usage
         self.write_filters(kernels)
@@ -209,14 +267,14 @@ class ConvolutionalLayer:
 
         # create the path to load from and load a npy file with the kernels
         path = '/'.join(folder for folder in os.getcwd().split('\\')[:-1])
-        path = os.path.join(path, f'temps/temp_{self.layer_id}.npy')
+        path = os.path.join(path, f'temps/temp_filters_{self.layer_id}.npy')
         return np.load(path)
 
     def write_filters(self, filters):
 
         # create the right path to save the data to and save kernels as npy file
         path = '/'.join(folder for folder in os.getcwd().split('\\')[:-1])
-        path = os.path.join(path, f'temps/temp_{self.layer_id}.npy')
+        path = os.path.join(path, f'temps/temp_filters_{self.layer_id}.npy')
         np.save(path, filters)
 
     def assign(self, x):
@@ -277,8 +335,30 @@ class ConvolutionalLayer:
 
 
 class Flatten:
-    def assign(self, x):
-        flat_object = np.zeros((x.shape[0], np.prod(x.shape[1:])))
-        for i in range(x.shape[0]):
-            flat_object[i, :] = x[i].flatten(order='C')
+
+    @staticmethod
+    def assign(x):
+
+        # create a new zero sized object with one dim per sample kernel - transform channel x width x height
+        # to 1 x (width * height)
+
+        # get amount of samples and amount of kernels
+        samples = x.shape[0]
+
+        # create placeholder variable for output array
+        flat_object = None
+
+        # loop over all samples
+        for sid, sample in enumerate(x):
+
+            # flatten the channel x width x height feature map
+            flat = x[sid].flatten(order='C')
+
+            # if not existing yet create an output array with samples, filter dims and flat object features
+            if flat_object is None:
+                flat_object = np.zeros((samples, flat.shape[0]))
+
+            # assign flat features to the sample and filter space
+            flat_object[sid] = flat
+
         return flat_object
