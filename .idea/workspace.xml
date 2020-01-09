@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b364e923-cf92-445e-b32e-8f3d8ea42cea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_layer/classifer.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/classifer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layer/network_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/network_layer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layer/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/processing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temps/temp_1d9faf3e-30bc-11ea-8488-9cb6d0fe269c.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temps/temp_1e311ea8-30bc-11ea-97da-9cb6d0fe269c.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temps/temp_6ec9ea2e-30bc-11ea-8b1e-9cb6d0fe269c.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temps/temp_6f5f8570-30bc-11ea-85d7-9cb6d0fe269c.npy" beforeDir="false" />
-    </list>
+    <list default="true" id="b364e923-cf92-445e-b32e-8f3d8ea42cea" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,7 +138,7 @@
       <workItem from="1578327850857" duration="5193000" />
       <workItem from="1578338237838" duration="1605000" />
       <workItem from="1578413314991" duration="4083000" />
-      <workItem from="1578503610932" duration="10996000" />
+      <workItem from="1578503610932" duration="11281000" />
     </task>
     <servers />
   </component>
