@@ -91,11 +91,14 @@ class ActivationLayer:
 
 class DenseLayer(ActivationLayer):
 
-    def __init__(self, nodes=2, learning_rate=0.1, activation_type='relu', layer_id=None):
+    def __init__(self, nodes=10, output_layer=False, activation_type='relu', layer_id=None, learning_rate=0.1):
         super().__init__(activation_type)
         self.learning_rate = learning_rate
         self.nodes = nodes
         self.new_layer = True
+        self.output_layer = output_layer
+        self.input = None
+        self.x = None
         self.weights, self.bias = None, None
 
         # assign random layer id code to the layer to make temp files and results locatable
@@ -108,16 +111,38 @@ class DenseLayer(ActivationLayer):
             self.new_layer = False
 
     def initialize_weights(self, input_dim):
-        weights = np.random.rand(self.nodes, input_dim) * 0.01
+        weights = np.random.rand(self.nodes, input_dim) * math.sqrt((2/input_dim))
         bias = np.zeros((self.nodes, 1))
         return weights, bias
 
-    def forward(self, x):
+    def forward_propagation(self, x):
         z = np.dot(self.weights, x.transpose()) + self.bias
-        return self.activation[self.activation_type](z)
+        return self.activation[self.activation_type](z).transpose()
 
-    def backward(self):
-        pass
+    def backward_propagation(self, x, y):
+        if self.output_layer:
+            # calculate the error
+            dZ = x - y
+
+            # create d of all weights
+            dw = (1/x.shape[1]) * np.dot(dZ, self.input.T)
+            db = (1/x.shape[1]) * np.sum(dZ, axis=1, keepdims=True)
+
+        else:
+            # calculate the error
+            dZ = np.multiply(np.dot(self.weights, x), 1 - np.power(self.x, 2))
+
+            # create d of all weights
+            dw = (1/x.shape[1]) * np.dot(dZ, self.input.T)
+            db = (1/x.shape[1]) * np.sum(dZ, axis=1, keepdims=True)
+
+        # Multiply the gradients by learning rate
+        self.weights = self.weights - self.learning_rate * dw
+        self.bias = self.bias - self.learning_rate * db
+
+        # overwrite both temp files to keep the last changes
+        self.write_weights(self.weights)
+        self.write_weights(self.bias, extension='bias')
 
     def load_weights(self):
 
@@ -140,6 +165,7 @@ class DenseLayer(ActivationLayer):
         np.save(path, weights)
 
     def assign(self, x):
+        self.input = x
 
         # get the number of samples, how many filters are and how many features coming in for each node
         samples, features = x.shape
@@ -148,15 +174,18 @@ class DenseLayer(ActivationLayer):
         # initialize new weights in case of a new initialized layer without any weights created yet
         if self.new_layer:
             self.weights, self.bias = self.initialize_weights(features)
-            self.write_weights(self.weights)
-            self.write_weights(self.bias, 'bias')
+
+            # self.write_weights(self.weights)
+            # self.write_weights(self.bias, 'bias')
 
         # load weights from file in case the Layer was created and used before
         else:
             self.weights = self.load_weights()
             self.bias = self.load_bias()
 
-        return self.forward(x)
+        # save the results of forward propagation for this layer for the backwards propagation
+        self.x = self.forward_propagation(x)
+        return self.x
 
 
 class DropoutLayer:
@@ -174,7 +203,7 @@ class DropoutLayer:
 
 class ConvolutionalLayer:
 
-    def __init__(self, border_mode='valid', filter_size=3, filter_count=3, layer_id=None):
+    def __init__(self, border_mode='valid', filter_size=3, filter_count=5, layer_id=None):
 
         # make border mode a global variable of the class and do quality check beforehand
         # With border mode "valid"/"zero" you get an output that is smaller than the input because the convolution is
@@ -260,7 +289,7 @@ class ConvolutionalLayer:
                    for _ in range(self.filter_count)]
 
         # save a temp file in which the filters will be saved for later usage
-        self.write_filters(kernels)
+        # self.write_filters(kernels)
         return kernels
 
     def load_filters(self):
@@ -324,12 +353,6 @@ class ConvolutionalLayer:
             else:
                 # return kernel_count x kernel_count, 3, 30, 30
                 conv_features = np.append(conv_features, [kernel_run_features], axis=0)
-
-            # status update
-            if nr == len(x) - 1:
-                print(f'Conv: {"="*100 + ">"}|{nr}/{len(x)}')
-            else:
-                print(f'Conv: {"="*(100 - int((1 - (nr + 1/len(x)))*100))+ ">" +  " "*int((1 - (nr + 1/len(x)))*100)}|{nr+1}/{len(x)}')
 
         return conv_features
 

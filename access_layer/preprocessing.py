@@ -57,6 +57,7 @@ class PreProcessing:
 
         array_data = data[b'data']
         labels = data[b'labels']
+        print()
 
         # split the data into three channels and transform its shape to 32x32 image - cut is at 1024 columns
         # each row contains one training sample
@@ -76,10 +77,29 @@ class PreProcessing:
             rgbArray[:, :, 2] = sample[2048:3072].reshape((32, 32))
 
             # add image and label to data storage
-            self.x.append(rgbArray)
-            self.y.append(labels[0])
+            self.x.append(rgbArray/255)
+            self.y.append(labels[row])
 
         return True
+
+    def encode_labels(self):
+        # get unique classes
+        classes = list(set(self.y))
+        encoded_labels = list()
+
+        for label in self.y:
+
+            # create list with classes size 0's
+            label_data = [0 for _ in classes]
+
+            # replace 0 with 1 at index of label class
+            label_data[classes.index(label)] = 1
+
+            # add sample to collection list
+            encoded_labels.append(label_data)
+
+        # return nested list with results as array
+        return np.array(encoded_labels).transpose()
 
     @staticmethod
     def split_channels(image):
@@ -96,4 +116,4 @@ class PreProcessing:
             rgb_shape.append(self.split_channels(sample))
 
         self.x = rgb_shape
-        return self.x, self.y
+        return self.x, self.encode_labels()
