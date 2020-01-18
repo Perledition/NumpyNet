@@ -24,13 +24,13 @@ model = Sequential(
         ActivationLayer(),
         # DropoutLayer(),
         Flatten(),
-        DenseLayer(),
+        DenseLayer(nodes=256),
         # DropoutLayer(),
-        DenseLayer(),
+        DenseLayer(nodes=100),
         DenseLayer(nodes=10, output_layer=True, activation_type='softmax')
     ],
     epochs=100
 )
 
-model.train(x[:500], y[:, :500])
+model.train(x[:100], y[:, :100])
 

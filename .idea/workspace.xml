@@ -4,7 +4,6 @@
     <list default="true" id="b364e923-cf92-445e-b32e-8f3d8ea42cea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/access_layer/classifer.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/classifer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_layer/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/preprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/layer/network_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/network_layer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/layer/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/processing.py" afterDir="false" />
     </list>
@@ -44,9 +43,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\Maxim\.virtualenvs\detective-eNXB7bDa\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/access_layer" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -152,7 +151,9 @@
       <workItem from="1578763653408" duration="4891000" />
       <workItem from="1578838417333" duration="718000" />
       <workItem from="1578850374507" duration="167000" />
-      <workItem from="1579023120232" duration="366000" />
+      <workItem from="1579023120232" duration="3549000" />
+      <workItem from="1579114479668" duration="27000" />
+      <workItem from="1579115270512" duration="12000" />
     </task>
     <servers />
   </component>
@@ -160,34 +161,34 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="846" y="317" key="#classifer" timestamp="1578139507662">
+    <state x="846" y="317" key="#classifer" timestamp="1579362174396">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="846" y="317" key="#classifer/0.0.3440.1400@0.0.3440.1400" timestamp="1578139507662" />
+    <state x="846" y="317" key="#classifer/0.0.3440.1400@0.0.3440.1400" timestamp="1579362174396" />
     <state x="1023" y="486" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1578505024979">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1023" y="486" key="#com.intellij.fileTypes.FileTypeChooser/0.0.3440.1400@0.0.3440.1400" timestamp="1578505024979" />
-    <state x="903" y="440" key="FileChooserDialogImpl" timestamp="1578090000432">
+    <state x="903" y="440" key="FileChooserDialogImpl" timestamp="1579115278267">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="903" y="440" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1578090000432" />
-    <state width="1963" height="1253" key="GridCell.Tab.0.bottom" timestamp="1578841621839">
+    <state x="903" y="440" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1579115278267" />
+    <state width="2350" height="837" key="GridCell.Tab.0.bottom" timestamp="1579362408894">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1963" height="1253" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1578841621839" />
-    <state width="1963" height="1253" key="GridCell.Tab.0.center" timestamp="1578841621839">
+    <state width="2350" height="837" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1579362408894" />
+    <state width="2350" height="837" key="GridCell.Tab.0.center" timestamp="1579362408894">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1963" height="1253" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1578841621839" />
-    <state width="1963" height="1253" key="GridCell.Tab.0.left" timestamp="1578841621839">
+    <state width="2350" height="837" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1579362408894" />
+    <state width="2350" height="837" key="GridCell.Tab.0.left" timestamp="1579362408894">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1963" height="1253" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1578841621839" />
-    <state width="1963" height="1253" key="GridCell.Tab.0.right" timestamp="1578841621839">
+    <state width="2350" height="837" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1579362408894" />
+    <state width="2350" height="837" key="GridCell.Tab.0.right" timestamp="1579362408894">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1963" height="1253" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1578841621839" />
+    <state width="2350" height="837" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1579362408894" />
     <state width="2665" height="485" key="GridCell.Tab.1.bottom" timestamp="1578599865421">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -208,9 +209,5 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="749" y="415" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1578150542447" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/NumpyNet$classifer.coverage" NAME="classifer Coverage Results" MODIFIED="1579023562886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/access_layer" />
-    <SUITE FILE_PATH="coverage/NumpyNet$network_layer.coverage" NAME="network_layer Coverage Results" MODIFIED="1578598148024" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/layer" />
   </component>
 </project>

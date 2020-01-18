@@ -91,7 +91,7 @@ class ActivationLayer:
 
 class DenseLayer(ActivationLayer):
 
-    def __init__(self, nodes=10, output_layer=False, activation_type='relu', layer_id=None, learning_rate=0.1):
+    def __init__(self, nodes=10, output_layer=False, activation_type='relu', layer_id=None, learning_rate=0.01):
         super().__init__(activation_type)
         self.learning_rate = learning_rate
         self.nodes = nodes
@@ -111,7 +111,7 @@ class DenseLayer(ActivationLayer):
             self.new_layer = False
 
     def initialize_weights(self, input_dim):
-        weights = np.random.rand(self.nodes, input_dim) * math.sqrt((2/input_dim))
+        weights = np.random.rand(self.nodes, input_dim) * np.sqrt((2/input_dim))
         bias = np.zeros((self.nodes, 1))
         return weights, bias
 
@@ -125,17 +125,16 @@ class DenseLayer(ActivationLayer):
             dZ = x - y
 
             # create d of all weights
-            dw = (1/x.shape[1]) * np.dot(dZ, self.input.T)
-            db = (1/x.shape[1]) * np.sum(dZ, axis=1, keepdims=True)
-
+            dw = 1/x.shape[0] * np.sum(np.dot(x, (x-y).T))
+            db = 1/x.shape[0] * np.sum(x-y)
         else:
             # calculate the error
             dZ = np.multiply(np.dot(self.weights, x), 1 - np.power(self.x, 2))
 
             # create d of all weights
-            dw = (1/x.shape[1]) * np.dot(dZ, self.input.T)
+            dw = (1/x.shape[1]) * np.dot(dZ, self.input.transpose())
             db = (1/x.shape[1]) * np.sum(dZ, axis=1, keepdims=True)
-
+            print(dw, db)
         # Multiply the gradients by learning rate
         self.weights = self.weights - self.learning_rate * dw
         self.bias = self.bias - self.learning_rate * db

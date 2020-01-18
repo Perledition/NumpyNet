@@ -45,27 +45,24 @@ class Sequential:
         return batches
 
     @staticmethod
-    def calculate_cost(x, y):
-        #print(np.multiply(np.log(x).transpose(), y))
-        #print(np.multiply((1 - y), np.log(1 - x).transpose()))
-        logprobs = np.multiply(np.log(x).transpose(), y) + np.multiply((1 - y), np.log(1 - x).transpose())
-        cost = -np.sum(logprobs) / x.shape[1]
-        return cost
+    def calculate_cost(yh, y):
+        return -1/yh.shape[0] * np.dot(y.reshape(-1), np.log2(yh.reshape(-1)).T)
 
     def batch_processing(self, x, y):
 
         x_return = x
         # forward propagation for all layers
+        results = list()
         for i, layer in enumerate(self.layers):
             x_return = layer.assign(x_return)
-            # print(i, x_return.shape)
+            results.append(x_return.copy())
 
         cost = self.calculate_cost(x_return, y)
 
         # backward propagation for all layers
         for i in range(len(self.layers)):
             try:
-                x_return = self.layers[-i].backward_propagation(x_return, y)
+                x_return = self.layers[-i].backward_propagation(x_return, results[-i])
             except Exception as e:
                 # print(e)
                 continue
