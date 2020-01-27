@@ -13,24 +13,23 @@ from layer.network_layer import *
 # network assumes quadratic format of input
 x, y = PreProcessing(r'C:\Users\Maxim\Documents\Studium\Semester\Semester I\DataScience\Studienleistung\cifar-10-batches-py').load_all()
 
+# train test split for data
+X_train = x[:400]
+y_train = y[:, :400]
+
+X_test = x[-100:]
+y_test = y[:, -100:]
+
 
 model = Sequential(
     [
         ConvolutionalLayer(),
         PoolingLayer(),
-        ActivationLayer(),
-        ConvolutionalLayer(),
-        PoolingLayer(),
-        ActivationLayer(),
-        # DropoutLayer(),
         Flatten(),
-        DenseLayer(nodes=256),
-        # DropoutLayer(),
-        DenseLayer(nodes=100),
         DenseLayer(nodes=10, output_layer=True, activation_type='softmax')
     ],
     epochs=100
 )
 
-model.train(x[:100], y[:, :100])
+model.train(X_train, y_train)
 

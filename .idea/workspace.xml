@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b364e923-cf92-445e-b32e-8f3d8ea42cea" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/temps/temp_weights_2cc6a2c2-4129-11ea-9785-9cb6d0fe269c.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NumpyNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NumpyNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/access_layer/classifer.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/classifer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/access_layer/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/preprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/layer/network_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/network_layer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/layer/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temps/temp_bias_417294fe-3a09-11ea-8cb7-9cb6d0fe269c.npy" beforeDir="false" afterPath="$PROJECT_DIR$/temps/temp_bias_2cc6a2c2-4129-11ea-9785-9cb6d0fe269c.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temps/temp_weights_417294fe-3a09-11ea-8cb7-9cb6d0fe269c.npy" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,12 +29,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ViWLCuGLxFkpBD3LbLG4wYlBE6" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -102,9 +112,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="processing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NumpyNet" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/layer" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/layer/processing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.classifer" />
+        <item itemvalue="Python.processing" />
         <item itemvalue="Python.network_layer" />
         <item itemvalue="Python.preprocessing" />
       </list>
@@ -160,6 +192,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="846" y="317" key="#classifer" timestamp="1579362174396">
       <screen x="0" y="0" width="3440" height="1400" />
@@ -169,26 +204,30 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1023" y="486" key="#com.intellij.fileTypes.FileTypeChooser/0.0.3440.1400@0.0.3440.1400" timestamp="1578505024979" />
-    <state x="903" y="440" key="FileChooserDialogImpl" timestamp="1579115278267">
+    <state x="844" y="646" key="FileChooserDialogImpl" timestamp="1579902618671">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="903" y="440" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1579115278267" />
-    <state width="2350" height="837" key="GridCell.Tab.0.bottom" timestamp="1579362408894">
+    <state x="844" y="646" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1579902618671" />
+    <state width="2273" height="650" key="GridCell.Tab.0.bottom" timestamp="1580145552309">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2350" height="837" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1579362408894" />
-    <state width="2350" height="837" key="GridCell.Tab.0.center" timestamp="1579362408894">
+    <state width="1894" height="657" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579679763254" />
+    <state width="2273" height="650" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1580145552309" />
+    <state width="2273" height="650" key="GridCell.Tab.0.center" timestamp="1580145552309">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2350" height="837" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1579362408894" />
-    <state width="2350" height="837" key="GridCell.Tab.0.left" timestamp="1579362408894">
+    <state width="1894" height="657" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579679763254" />
+    <state width="2273" height="650" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1580145552309" />
+    <state width="2273" height="650" key="GridCell.Tab.0.left" timestamp="1580145552309">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2350" height="837" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1579362408894" />
-    <state width="2350" height="837" key="GridCell.Tab.0.right" timestamp="1579362408894">
+    <state width="1894" height="657" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579679763253" />
+    <state width="2273" height="650" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1580145552309" />
+    <state width="2273" height="650" key="GridCell.Tab.0.right" timestamp="1580145552309">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="2350" height="837" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1579362408894" />
+    <state width="1894" height="657" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579679763254" />
+    <state width="2273" height="650" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1580145552309" />
     <state width="2665" height="485" key="GridCell.Tab.1.bottom" timestamp="1578599865421">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -205,9 +244,13 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="2665" height="485" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1578599865420" />
-    <state x="749" y="415" key="SettingsEditor" timestamp="1578150542447">
+    <state x="749" y="415" key="SettingsEditor" timestamp="1579639658233">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="749" y="415" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1578150542447" />
+    <state x="749" y="415" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1579639658233" />
+    <state x="551" y="431" width="700" height="530" key="recent.locations.popup" timestamp="1580067560390">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="551" y="431" width="700" height="530" key="recent.locations.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1580067560390" />
   </component>
 </project>

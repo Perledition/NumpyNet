@@ -12,14 +12,16 @@ class Sequential:
         self.layers = layers
         self.epochs = epochs
         self.batch_size = batch_size
+        self.loss = list()
+        self.acc_list = list()
 
     @staticmethod
-    def status_update(cost, batch_nr, batch_size, epoch, time):
+    def status_update(cost, batch_nr, batch_size, epoch, time, acc):
         if batch_nr == batch_size - 1:
-            print(f'epoch {epoch}: {"=" * 100 + ">"}|{batch_nr / batch_size} | cost: {cost} | duration: {time}')
+            print(f'epoch {epoch}: {"=" * 100 + ">"}|{(batch_nr / batch_size):.5f} | cost: {cost:.5f} | acc: {acc:.2f}% | duration: {time}')
         else:
             print(
-                f'epoch {epoch}: {"=" * (100 - int((1 - ((batch_nr + 1) / batch_size)) * 100)) + ">" + " " * int((1 - ((batch_nr + 1) / batch_size)) * 100)}|{(batch_nr + 1) / batch_size}% | cost: {cost} | duration: {time}')
+                f'epoch {epoch}: {"=" * (100 - int((1 - ((batch_nr + 1) / batch_size)) * 100)) + ">" + " " * int((1 - ((batch_nr + 1) / batch_size)) * 100)}|{((batch_nr + 1) / batch_size):.5f}% | cost: {cost:.5f} | acc: {acc:.2f}% | duration: {time}')
 
     def batch_generator(self, x, y):
         # shuffle x and y together to make sure that all batches contain more than one class
@@ -45,8 +47,18 @@ class Sequential:
         return batches
 
     @staticmethod
-    def calculate_cost(yh, y):
-        return -1/yh.shape[0] * np.dot(y.reshape(-1), np.log2(yh.reshape(-1)).T)
+    def accuracy(x, y):
+        idx_x = np.argmax(x, axis=1)
+        idx_y = np.argmax(y.transpose(), axis=1)
+        count = 0
+        for i in range(idx_x.shape[0]):
+            if idx_x[i] == idx_y[i]:
+                count += 1
+        return count/idx_y.shape[0] * 100
+
+    def calculate_cost(self, yh, y):
+        # print(yh, y)
+        return -1/self.batch_size * np.dot(y.reshape(-1), np.ma.log(yh.reshape(-1)).T)
 
     def batch_processing(self, x, y):
 
@@ -57,17 +69,18 @@ class Sequential:
             x_return = layer.assign(x_return)
             results.append(x_return.copy())
 
+        acc = self.accuracy(x_return, y)
         cost = self.calculate_cost(x_return, y)
 
         # backward propagation for all layers
         for i in range(len(self.layers)):
             try:
-                x_return = self.layers[-i].backward_propagation(x_return, results[-i])
+                x_return = self.layers[-i].backward(x_return, results[-i])
             except Exception as e:
                 # print(e)
                 continue
 
-        return cost
+        return cost, acc
 
     def train(self, x, y):
         print('create batches for training process...')
@@ -84,11 +97,14 @@ class Sequential:
                 ty = np.array(ty).transpose()
                 # print('x in:', tx)
                 # print('x in:', len(tx), tx[0].shape)
-
-                cost = self.batch_processing(tx, ty)
+                cost, acc = self.batch_processing(tx, ty)
+                self.loss.append(cost)
+                self.acc_list.append(acc)
 
                 # status update
                 duration = str(dt.datetime.now() - batch_start)
-                self.status_update(cost, ix, len(batches), epoch, duration)
+                if (ix is 0) or (len(batches) % ix is 0):
+                    self.status_update(cost, ix, len(batches), epoch, duration, acc)
 
-            print(f'epoch {epoch}: {dt.datetime.now() - epoch_start}')
+            print(f'epoch {epoch}: {dt.datetime.now() - epoch_start}\n  ')
+            print(f"<---------------- EPOCH: {epoch + 1} ------------------->")

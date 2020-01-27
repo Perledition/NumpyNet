@@ -14,6 +14,8 @@ class PoolingLayer:
 
     def __init__(self, pool_size=2, pooling_type='max'):
         self.pool_size = pool_size
+        self.cache = dict()
+        self.pool_type = pooling_type
         self.pooling = {'max': np.max, 'min': np.min, 'mean': np.mean}[pooling_type]
 
     def pool_2d(self, feature):
@@ -37,7 +39,56 @@ class PoolingLayer:
 
         return np.array(result)
 
+    def backward(self, da):
+
+        # getting dimensions from previous input for the pooling layer // needs to be tuple, since we do not know
+        # how many dimensions the batch will have
+        batch_size = self.cache['input'].shape
+
+        # initialize an array to fill with back prop data
+        da_prev = np.zeros(batch_size)
+
+        # assuming that tensor size will be the same for all features
+        channels, width, height = batch_size[-3:]
+
+        # iterate over each sample given in x (sample, tensor_dimension, channels, height, width)
+        for idx, sample in enumerate(da):
+
+            # iterate over each tensor dimension (tensor_dimension, channels, height, width)
+            for tdx, tensor_dim in enumerate(sample):
+
+                # 'Pool' back
+                for row in range(width):
+                    rs = row
+                    re = rs + self.pool_size
+
+                    for column in range(height):
+                        cs = column
+                        ce = cs + self.pool_size
+
+                        for channel in range(0, channels):
+
+                            if self.pool_type == 'max':
+                                a_slice = self.cache['input'][idx, tdx, channel, rs:re, cs:ce]
+                                a_slice = a_slice == np.max(a_slice)
+
+                                da_prev[idx, tdx, channel, rs:re, cs:ce] += \
+                                    da[idx, tdx, channel, row:row+1, column:column+1] * a_slice
+
+                            elif self.pool_type == 'mean':
+                                # Distribute the average value back
+                                mean_value = np.copy(da[idx, tdx, channel, row:row+1, column:column+1])
+                                mean_value[:, :, :, np.arange(mean_value.shape[-1])] /= (self.pool_size * self.pool_size)
+                                da_prev[:, rs:re, cs:ce, :] += mean_value
+
+                        else:
+                            raise NotImplementedError("Invalid type of pooling")
+
+        return da_prev
+
     def assign(self, x):
+        # save input for back prop
+        self.cache = x.copy()
 
         # get current dimensions of the image features and divide it's width and height be pool size to get output dim's
         resulting_dim = list(x.shape)
@@ -60,13 +111,19 @@ class ActivationLayer:
 
     def __init__(self, activation_type='relu'):
         self.activation_type = activation_type
+        self.cache = None
 
         self.activation = {'relu': self.relu_layer,
                            'sigmoid': self.sigmoid_layer,
                            'softmax': self.softmax_layer}
 
-    @staticmethod
-    def relu_layer(x):
+        self.back_function = {'relu': self.back_relu,
+                              'sigmoid': self.back_sig,
+                              'softmax': self.back_soft}
+
+    def relu_layer(self, x):
+        self.cache = x.copy()
+
         # turn all negative values in a matrix into zeros
         z = np.zeros_like(x)
         return np.where(x > z, x, z)
@@ -84,6 +141,20 @@ class ActivationLayer:
         e = np.exp(w - maxes)
         dist = e / np.sum(e, axis=1, keepdims=True)
         return dist
+
+    def back_relu(self, da):
+        z = self.cache
+        return da * np.where(z >= 0, 1, 0)
+
+    def back_sig(self, da):
+        z = self.activation['sigmoid'](self.cache)
+        return z*(1-z) * da
+
+    def back_soft(self, da):
+        return da * self.cache * (1 - self.cache)
+
+    def backward(self, da):
+        return self.back_function[self.activation_type](da)
 
     def assign(self, x):
         return self.activation[self.activation_type](x)
@@ -119,10 +190,8 @@ class DenseLayer(ActivationLayer):
         z = np.dot(self.weights, x.transpose()) + self.bias
         return self.activation[self.activation_type](z).transpose()
 
-    def backward_propagation(self, x, y):
+    def backward(self, x, y):
         if self.output_layer:
-            # calculate the error
-            dZ = x - y
 
             # create d of all weights
             dw = 1/x.shape[0] * np.sum(np.dot(x, (x-y).T))
@@ -214,6 +283,7 @@ class ConvolutionalLayer:
         self.border_mode = border_mode  # defines padding for input data
         self.filter_count = filter_count  # defines how many filters will be initialized for this Layer
         self.filter_size = filter_size  # defines the shape of the one filter e.g. size 3 means a 3x3 kernel/filter
+        self.cache = None  # variable to save the input for backward
 
         # assign random layer id code to the layer to make temp files and results locatable
         if layer_id is None:
@@ -305,6 +375,37 @@ class ConvolutionalLayer:
         path = os.path.join(path, f'temps/temp_filters_{self.layer_id}.npy')
         np.save(path, filters)
 
+    def backward(self, x):
+
+        # Initialize dA_prev, dW, db with the correct shapes
+        channels, width, height = self.cache.shape[-3:]
+        dA_prev = np.zeros(self.cache.shape)
+        dW = np.zeros(self.kernels)
+        # db = np.zeros((1, 1, 1, n_C))
+
+        for nr, sample in enumerate(x):
+            for tensor_dimension in sample:
+                for idx, kernel in enumerate(self.kernels):
+                    height, width, channel = kernel.shape
+                    # apply window slicing process over all three channels with a kernel for each channel
+                    for row in range(0, height):
+                        rs = 0 + row  # starting point in row for this window
+                        re = self.filter_size + row  # endpoint in row for this window
+
+                        for column in range(0, width):
+                            cs = 0 + column  # starting point in column for this window
+                            ce = self.filter_size + column  # endpoint in column for this window
+
+                            for channel in range(0, channels):
+                                a_slice = self.cache[nr, idx, channel, rs:re, cs:ce]
+
+                                # Update gradients for the window and the filter's parameters using the code formulas given above
+                                dA_prev[nr, idx, channel, rs:re, cs:ce] += self.kernels[:, :, :, :, channel] * x[nr, idx, channel, row, column]
+                                dW[nr, idx, channel, :, :] += a_slice * x[nr, idx, channel, row, column]
+                                # db[nr, idx, channel, :, :] += x[nr, idx, channel, row, column]
+
+        assert (dA_prev.shape == self.cache.shape)
+
     def assign(self, x):
         """
         assign function is the main loop for the ConvolutionalLayer class and will be the only public used function
@@ -318,6 +419,7 @@ class ConvolutionalLayer:
 
         # initialize placeholder variable for returning values
         conv_features = None
+        self.cache = x
 
         # iterate over each sample and apply convolution
         for nr, sample in enumerate(x):
@@ -358,8 +460,12 @@ class ConvolutionalLayer:
 
 class Flatten:
 
-    @staticmethod
-    def assign(x):
+    def __init__(self):
+        self.input_dim = None
+
+    def assign(self, x):
+
+        self.input_dim = x.shape
 
         # create a new zero sized object with one dim per sample kernel - transform channel x width x height
         # to 1 x (width * height)
@@ -384,3 +490,6 @@ class Flatten:
             flat_object[sid] = flat
 
         return flat_object
+
+    def backward(self, da):
+        return da.reshape(self.input_dim)

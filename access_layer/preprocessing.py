@@ -115,5 +115,9 @@ class PreProcessing:
         for sample in self.x:
             rgb_shape.append(self.split_channels(sample))
 
-        self.x = rgb_shape
+        self.x = np.array(rgb_shape)
+        # normalize and zero center the data
+        self.x -= np.mean(self.x, axis=0)
+        self.x /= np.std(self.x, axis=0)
+
         return self.x, self.encode_labels()
