@@ -1,13 +1,14 @@
 # import standard modules
-import pickle
 
 # import third party modules+
-import numpy as np
 
 # project related imports
-from access_layer.preprocessing import PreProcessing
-from layer.processing import Sequential
-from layer.network_layer import *
+from preprocessing import PreProcessing
+from layers.pooling import PoolingLayer
+from layers.flatten import Flatten
+from layers.connected import DenseLayer
+from layers.convolution import ConvolutionalLayer
+from model.model import Sequential
 
 
 # network assumes quadratic format of input
@@ -28,8 +29,7 @@ model = Sequential(
         Flatten(),
         DenseLayer(nodes=10, output_layer=True, activation_type='softmax')
     ],
-    epochs=100
+    epochs=1000
 )
 
 model.train(X_train, y_train)
-

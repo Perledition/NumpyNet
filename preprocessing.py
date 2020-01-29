@@ -52,12 +52,15 @@ class PreProcessing:
             data_dict = pickle.load(fo, encoding='bytes')
         return data_dict
 
+    @staticmethod
+    def to_grayscale(rgb):
+        return 0.2989 * rgb[:, :, 0] + 0.5870 * rgb[:, :, 1] + 0.1140 * rgb[:, :, 2]
+
     def load_single(self, path):
         data = self.unpickle(path)
 
         array_data = data[b'data']
         labels = data[b'labels']
-        print()
 
         # split the data into three channels and transform its shape to 32x32 image - cut is at 1024 columns
         # each row contains one training sample
@@ -113,7 +116,7 @@ class PreProcessing:
 
         rgb_shape = list()
         for sample in self.x:
-            rgb_shape.append(self.split_channels(sample))
+            rgb_shape.append(self.to_grayscale(sample))
 
         self.x = np.array(rgb_shape)
         # normalize and zero center the data

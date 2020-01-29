@@ -8,12 +8,17 @@ import numpy as np
 
 class Sequential:
 
-    def __init__(self, layers, epochs=20, batch_size=100):
-        self.layers = layers
-        self.epochs = epochs
-        self.batch_size = batch_size
-        self.loss = list()
-        self.acc_list = list()
+    def __init__(self, layers, epochs=100, batch_size=100):
+
+        self.layers = layers  # list of layers to build a network from folder layers
+        self.epochs = epochs  # number of epochs to train
+        self.batch_size = batch_size  # size of one batch for processing
+        self.loss = list()  # empty list to store loss values
+        self.acc = list()  # empty list to store accuracy values
+
+    def calculate_cost(self, prediction, y):
+        # SUPPORTS ONLY CATEGORICAL CROSS ENTROPY SO FAR SINCE MEANT TO BE A SIMPLE CNN FRAMEWORK
+        return -1/self.batch_size * np.dot(y, np.log(prediction).T)
 
     @staticmethod
     def status_update(cost, batch_nr, batch_size, epoch, time, acc):
@@ -56,29 +61,24 @@ class Sequential:
                 count += 1
         return count/idx_y.shape[0] * 100
 
-    def calculate_cost(self, yh, y):
-        # print(yh, y)
-        return -1/self.batch_size * np.dot(y.reshape(-1), np.ma.log(yh.reshape(-1)).T)
-
     def batch_processing(self, x, y):
 
-        x_return = x
-        # forward propagation for all layers
-        results = list()
-        for i, layer in enumerate(self.layers):
-            x_return = layer.assign(x_return)
-            results.append(x_return.copy())
+        samples = x
+        for nr, x_return in enumerate(samples):
+            # forward propagation for all layers
+            results = list()
+            for i, layer in enumerate(self.layers):
+                x_return = layer.forward(x_return)
+                results.append(x_return.copy())
 
-        acc = self.accuracy(x_return, y)
-        cost = self.calculate_cost(x_return, y)
+            acc = 1 if np.argmax(x_return, axis=1) == y else 0
+            cost = self.calculate_cost(x_return, y[:, nr].transpose())
 
-        # backward propagation for all layers
-        for i in range(len(self.layers)):
-            try:
-                x_return = self.layers[-i].backward(x_return, results[-i])
-            except Exception as e:
-                # print(e)
-                continue
+            # backward propagation for all layers
+            dcost = cost.copy()
+            for i in range(len(self.layers)):
+                print('backward layer: ', -i)
+                dcost = self.layers[-i].backward(dcost)
 
         return cost, acc
 
@@ -93,18 +93,21 @@ class Sequential:
             for ix, batch in enumerate(batches):
                 batch_start = dt.datetime.now()
                 # decode batch into usable x and y since it is through the batch generator in a list
+
                 tx, ty = zip(*batch)
                 ty = np.array(ty).transpose()
                 # print('x in:', tx)
                 # print('x in:', len(tx), tx[0].shape)
                 cost, acc = self.batch_processing(tx, ty)
                 self.loss.append(cost)
-                self.acc_list.append(acc)
+                self.acc.append(acc)
 
                 # status update
                 duration = str(dt.datetime.now() - batch_start)
-                if (ix is 0) or (len(batches) % ix is 0):
+                if (ix is 0) or (len(batches) % ix is 0) or (ix == len(batches) - 1):
                     self.status_update(cost, ix, len(batches), epoch, duration, acc)
 
             print(f'epoch {epoch}: {dt.datetime.now() - epoch_start}\n  ')
             print(f"<---------------- EPOCH: {epoch + 1} ------------------->")
+    
+

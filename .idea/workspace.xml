@@ -2,16 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b364e923-cf92-445e-b32e-8f3d8ea42cea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/temps/temp_weights_2cc6a2c2-4129-11ea-9785-9cb6d0fe269c.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/NumpyNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NumpyNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_meta/activation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_meta/layer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layers/activation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layers/connected.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layers/convolution.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layers/dropout.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layers/flatten.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layers/pooling.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_layer/classifer.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/classifer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_layer/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_layer/preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layer/network_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/network_layer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layer/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/layer/processing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temps/temp_bias_417294fe-3a09-11ea-8cb7-9cb6d0fe269c.npy" beforeDir="false" afterPath="$PROJECT_DIR$/temps/temp_bias_2cc6a2c2-4129-11ea-9785-9cb6d0fe269c.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temps/temp_weights_417294fe-3a09-11ea-8cb7-9cb6d0fe269c.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/access_layer/classifer.py" beforeDir="false" afterPath="$PROJECT_DIR$/classifer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/access_layer/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layer/network_layer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/layer/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager/organizer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temps/temp_bias_2cc6a2c2-4129-11ea-9785-9cb6d0fe269c.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temps/temp_weights_2cc6a2c2-4129-11ea-9785-9cb6d0fe269c.npy" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +51,35 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.classifer">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Maxim\PycharmProjects\NumpyNet" />
+      <recent name="C:\Users\Maxim\PycharmProjects\NumpyNet\model" />
+      <recent name="C:\Users\Maxim\PycharmProjects\NumpyNet\tutorial\_meta" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.classifer (1)">
+    <configuration name="classifer (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NumpyNet" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classifer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="classifer" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="NumpyNet" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -59,7 +93,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/access_layer/classifer.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Maxim\PycharmProjects\NumpyNet\classifer.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -103,7 +137,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/access_layer/preprocessing.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Maxim\PycharmProjects\NumpyNet\preprocessing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -135,6 +169,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.classifer (1)" />
         <item itemvalue="Python.classifer" />
         <item itemvalue="Python.processing" />
         <item itemvalue="Python.network_layer" />
@@ -208,26 +243,26 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="844" y="646" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1579902618671" />
-    <state width="2273" height="650" key="GridCell.Tab.0.bottom" timestamp="1580145552309">
+    <state width="2497" height="557" key="GridCell.Tab.0.bottom" timestamp="1580332292220">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="1894" height="657" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579679763254" />
-    <state width="2273" height="650" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1580145552309" />
-    <state width="2273" height="650" key="GridCell.Tab.0.center" timestamp="1580145552309">
+    <state width="2497" height="557" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1580332292220" />
+    <state width="2497" height="557" key="GridCell.Tab.0.center" timestamp="1580332292220">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="1894" height="657" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579679763254" />
-    <state width="2273" height="650" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1580145552309" />
-    <state width="2273" height="650" key="GridCell.Tab.0.left" timestamp="1580145552309">
+    <state width="2497" height="557" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1580332292220" />
+    <state width="2497" height="557" key="GridCell.Tab.0.left" timestamp="1580332292220">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="1894" height="657" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579679763253" />
-    <state width="2273" height="650" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1580145552309" />
-    <state width="2273" height="650" key="GridCell.Tab.0.right" timestamp="1580145552309">
+    <state width="2497" height="557" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1580332292220" />
+    <state width="2497" height="557" key="GridCell.Tab.0.right" timestamp="1580332292220">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="1894" height="657" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579679763254" />
-    <state width="2273" height="650" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1580145552309" />
+    <state width="2497" height="557" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1580332292220" />
     <state width="2665" height="485" key="GridCell.Tab.1.bottom" timestamp="1578599865421">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
