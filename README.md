@@ -1,21 +1,23 @@
 # NumpyNet
-NumpyNet is a plain numpy based framework for building simple convolutional neuronal networks. The way to use it is oriented on state of the art frameworks like Tensorflow or Keras, but is not meant to be a high performance network architecture, rather than a open piece of code to gain deep understanding of how deep neuronal networks like cnn's work.
+NumpyNet is a small but working neuronal network lib. It follows the structure of the state of the art frameworks
+like Tensorflow, Keras or PyTouch. The main purpose was to learn how to create such a deep learning library with the
+most simplistic options
 
-## Requirements
-### System
-The System used for training was a windows i7, 32GB Ram system. Training was based on CPU since, GPU option is not included in this playground project.
+### Featured:
+until now:
+-- Dense
+-- Softmax, Sigmoid & RelU
+-- Cross Entropy, RootMeanSquaredError
+-- Accuracy
 
 ### Environment
 The code is written in Python 3.7 and a pipfile will install all dependencies
 
-### Data
+### Final data which will be used to test out the performance of the framework
 Training data was cifar-10-batches-py from:
 http://www.cs.toronto.edu/~kriz/cifar.html
 
-NumpyNet always assumes quadratic input data - image shape like 32x32
-and 3 channels per image like rgb
+### first test:
+![Alt Text align=center](_meta/training.gif)
 
-### Things which could be improved - quick wins
-1. Multithreading to improve overall speed
-2. Advanced matrix multiplication to reduce for loops
-3. remove dependency of quadratic images (width==height)
+

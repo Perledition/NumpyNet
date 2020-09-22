@@ -1,113 +1,115 @@
 # import standard modules
-import random as rm
-import datetime as dt
 
 # import third party modules
 import numpy as np
+from matplotlib import pyplot as plt
+
+# import project related modules
+from metric.measure import Accuracy
+from loss.cost import RootMeanSquaredError, CrossEntropy
 
 
-class Sequential:
+class Sequence(object):
 
-    def __init__(self, layers, epochs=100, batch_size=100):
+    def __init__(self, layer: list, loss: str, epochs: int, batch_size: int):
+        self.layer = layer
+        self.loss = {"rmse": RootMeanSquaredError, "cross_entropy": CrossEntropy}[loss]()
+        self.epochs = epochs
+        self.batch_size = batch_size
+        self.loss_history = list()
+        self.performance = {"accuracy": Accuracy}["accuracy"]()
 
-        self.layers = layers  # list of layers to build a network from folder layers
-        self.epochs = epochs  # number of epochs to train
-        self.batch_size = batch_size  # size of one batch for processing
-        self.loss = list()  # empty list to store loss values
-        self.acc = list()  # empty list to store accuracy values
+    def add(self, layer):
+        self.layer.append(layer)
 
-    def calculate_cost(self, prediction, y):
-        # SUPPORTS ONLY CATEGORICAL CROSS ENTROPY SO FAR SINCE MEANT TO BE A SIMPLE CNN FRAMEWORK
-        return -1/self.batch_size * np.dot(y, np.log(prediction).T)
+    def monitor_callback(self, X, Y, iteration):
+        xx, yy = np.mgrid[X.min():X.max():.1, X.min():X.max():.1]
+        grid = np.c_[xx.ravel(), yy.ravel()]
+        preds = np.array([self.predict(grid[i]) for i in range(0, grid.shape[0])])
+        preds = preds[:, 0, 0].reshape(xx.shape)
 
-    @staticmethod
-    def status_update(cost, batch_nr, batch_size, epoch, time, acc):
-        if batch_nr == batch_size - 1:
-            print(f'epoch {epoch}: {"=" * 100 + ">"}|{(batch_nr / batch_size):.5f} | cost: {cost:.5f} | acc: {acc:.2f}% | duration: {time}')
-        else:
-            print(
-                f'epoch {epoch}: {"=" * (100 - int((1 - ((batch_nr + 1) / batch_size)) * 100)) + ">" + " " * int((1 - ((batch_nr + 1) / batch_size)) * 100)}|{((batch_nr + 1) / batch_size):.5f}% | cost: {cost:.5f} | acc: {acc:.2f}% | duration: {time}')
+        y = Y[:, 0]
 
-    def batch_generator(self, x, y):
-        # shuffle x and y together to make sure that all batches contain more than one class
-        c = list(zip(x, list(y.transpose())))
-        rm.shuffle(c)
+        f, ax = plt.subplots(figsize=(10, 10))
+        contour = ax.contourf(xx, yy, preds, 100, cmap="Blues",
+                              vmin=0, vmax=1)
+        ax_c = f.colorbar(contour)
+        ax_c.set_label("$P(y = 1)$")
+        ax_c.set_ticks([0, .25, .5, .75, 1])
 
-        # initialize starting parameters for creating batch sizes
-        batches = list()
-        batches_count = int(len(x) / self.batch_size)
+        ax.scatter(X[500:, 0], X[500:, 1], c=y[500:], s=50,
+                   cmap="RdBu", vmin=-.2, vmax=1.2,
+                   edgecolor="white", linewidth=1)
+
+        ax.set(aspect="equal",
+               xlim=(X.min(), X.max()), ylim=(X.min(), X.max()),
+               xlabel="$X_1$", ylabel="$X_2$")
+
+        save_path = os.path.join(os.getcwd(), 'numpynet_capture')
+        if not os.path.isdir(save_path):
+            os.mkdir(save_path)
+
+        plt.savefig(os.path.join(save_path, f'{iteration}.png'))
+
+    def predict(self, x):
+        # iterate over each layer - forward feed
+        for i, layer in enumerate(self.layer):
+
+            # if it is the first iteration than handover sample reshaped
+            if i is 0:
+                z = self.layer[i].forward(x.reshape(-1, 1))
+
+            # else hand over the current z value
+            else:
+                z = self.layer[i].forward(z)
+
+        return z
+
+    def calculated_batches(self, x):
+
         start = 0
         end = self.batch_size
-
-        # start splitting samples into batches
-        for i in range(1, batches_count + 1):
-            if i + 1 < batches_count:
-                batches.append(c[start:end])
-            else:
-                batches.append(c[start:])
-
+        for i in range(0, int(x.shape[0]/self.batch_size)):
+            batch = x[start:end, :]
             start += self.batch_size
             end += self.batch_size
+            yield batch
 
-        return batches
+    def _collect_loss(self, loss):
+        self.loss_history.append(loss)
 
-    @staticmethod
-    def accuracy(x, y):
-        idx_x = np.argmax(x, axis=1)
-        idx_y = np.argmax(y.transpose(), axis=1)
-        count = 0
-        for i in range(idx_x.shape[0]):
-            if idx_x[i] == idx_y[i]:
-                count += 1
-        return count/idx_y.shape[0] * 100
+    def fit(self, x, y, capture_training=False):
 
-    def batch_processing(self, x, y):
+        for e in range(1, self.epochs + 1):
 
-        samples = x
-        for nr, x_return in enumerate(samples):
-            # forward propagation for all layers
-            results = list()
-            for i, layer in enumerate(self.layers):
-                x_return = layer.forward(x_return)
-                results.append(x_return.copy())
+            avg_loss = list()
+            for ix in range(0, x.shape[0]):
 
-            acc = 1 if np.argmax(x_return, axis=1) == y else 0
-            cost = self.calculate_cost(x_return, y[:, nr].transpose())
+                # forward feed
+                z = x[ix].reshape(-1, 1)
+                for i, layer in enumerate(self.layer):
+                    z = self.layer[i].forward(z)
 
-            # backward propagation for all layers
-            dcost = cost.copy()
-            for i in range(len(self.layers)):
-                print('backward layer: ', -i)
-                dcost = self.layers[-i].backward(dcost)
+                # define cost
+                self.performance.add(z, y[ix])
+                cost = self.loss.forward(z, y[ix])
+                avg_loss.append(cost)
 
-        return cost, acc
+                # define error
+                error = self.loss.backward()
 
-    def train(self, x, y):
-        print('create batches for training process...')
-        batches = self.batch_generator(x, y)
-        print(f'{len(batches)} were created with samples size of {self.batch_size} each..')
-        print('start training...')
+                # backward feed
+                for index in range(1, len(self.layer) + 1):
+                    error = self.layer[-index].backward(error)
 
-        for epoch in range(self.epochs):
-            epoch_start = dt.datetime.now()
-            for ix, batch in enumerate(batches):
-                batch_start = dt.datetime.now()
-                # decode batch into usable x and y since it is through the batch generator in a list
+            self.loss_history.append(sum(avg_loss)/len(avg_loss))
 
-                tx, ty = zip(*batch)
-                ty = np.array(ty).transpose()
-                # print('x in:', tx)
-                # print('x in:', len(tx), tx[0].shape)
-                cost, acc = self.batch_processing(tx, ty)
-                self.loss.append(cost)
-                self.acc.append(acc)
+            if capture_training:
+                self.monitor_callback(x, y, e)
 
-                # status update
-                duration = str(dt.datetime.now() - batch_start)
-                if (ix is 0) or (len(batches) % ix is 0) or (ix == len(batches) - 1):
-                    self.status_update(cost, ix, len(batches), epoch, duration, acc)
+            if e%50== 0:
+                print(f"EPOCH {e}: avg. loss: {self.loss_history[-1]}, {self.performance.get()}")
+            self.performance.clean()
 
-            print(f'epoch {epoch}: {dt.datetime.now() - epoch_start}\n  ')
-            print(f"<---------------- EPOCH: {epoch + 1} ------------------->")
     
 
