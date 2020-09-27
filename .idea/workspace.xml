@@ -2,25 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b364e923-cf92-445e-b32e-8f3d8ea42cea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_meta/training.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loss/cost.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/metric/measure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/NumpyNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NumpyNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_meta/MnistExamples.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_meta/minst_run.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_meta/mnist_loss.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_meta/simple_classification_loss.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_meta/simple_run.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layers/general.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/numpynet_experiment/mnist_digit_classification/classifier.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_meta/activation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_meta/layer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classifer.py" beforeDir="false" afterPath="$PROJECT_DIR$/classifer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/activation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classifer.py" beforeDir="false" afterPath="$PROJECT_DIR$/numpynet_experiment/simple_classification/classifer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layers/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/activations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/layers/connected.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/connected.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/convolution.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/dropout.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/activations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/flatten.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/pooling.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/loss/cost.py" beforeDir="false" afterPath="$PROJECT_DIR$/loss/cost.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/metric/measure.py" beforeDir="false" afterPath="$PROJECT_DIR$/metric/measure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing_mnist.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +57,7 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Maxim\PycharmProjects\NumpyNet\_meta" />
+      <recent name="C:\Users\Maxim\PycharmProjects\NumpyNet\numpynet_experiment\simple_classification" />
       <recent name="C:\Users\Maxim\PycharmProjects\NumpyNet" />
       <recent name="C:\Users\Maxim\PycharmProjects\NumpyNet\model" />
       <recent name="C:\Users\Maxim\PycharmProjects\NumpyNet\tutorial\_meta" />
@@ -72,12 +72,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/numpynet_experiment/simple_classification" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/numpynet_experiment/simple_classification/classifer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="classifer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NumpyNet" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classifer.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Maxim\PycharmProjects\NumpyNet\numpynet_experiment\simple_classification\classifer.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -86,29 +108,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="classifer" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="NumpyNet" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\Maxim\.virtualenvs\detective-eNXB7bDa\Scripts\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/access_layer" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\Maxim\PycharmProjects\NumpyNet\classifer.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="network_layer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="classifier" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NumpyNet" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -116,12 +116,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/layer" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/numpynet_experiment/mnist_digit_classification" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/layer/network_layer.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/numpynet_experiment/mnist_digit_classification/classifier.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -130,7 +130,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="preprocessing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="measure" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NumpyNet" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,12 +138,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/access_layer" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/metric" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\Maxim\PycharmProjects\NumpyNet\preprocessing.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/metric/measure.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -152,7 +152,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="processing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NumpyNet" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -160,12 +160,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/layer" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/layer/processing.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="regression" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NumpyNet" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/numpynet_experiment/simple_regression" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/numpynet_experiment/simple_regression/regression.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -177,10 +199,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.classifer (1)" />
-        <item itemvalue="Python.classifer" />
-        <item itemvalue="Python.processing" />
-        <item itemvalue="Python.network_layer" />
-        <item itemvalue="Python.preprocessing" />
+        <item itemvalue="Python.classifier" />
+        <item itemvalue="Python.regression" />
+        <item itemvalue="Python.classifer (1)" />
+        <item itemvalue="Python.measure" />
       </list>
     </recent_temporary>
   </component>
@@ -216,7 +238,9 @@
       <workItem from="1579023120232" duration="3549000" />
       <workItem from="1579114479668" duration="27000" />
       <workItem from="1579115270512" duration="12000" />
-      <workItem from="1600799418316" duration="2315000" />
+      <workItem from="1600799418316" duration="2422000" />
+      <workItem from="1601053355903" duration="154000" />
+      <workItem from="1601194238925" duration="31088000" />
     </task>
     <servers />
   </component>
@@ -231,28 +255,37 @@
       <screen x="0" y="40" width="3440" height="1400" />
     </state>
     <state x="2072" y="312" key="#classifer_(1)/0.40.3440.1400@0.40.3440.1400" timestamp="1600800445121" />
-    <state width="2099" height="666" key="GridCell.Tab.0.bottom" timestamp="1600801027969">
+    <state x="2141" y="473" key="FileChooserDialogImpl" timestamp="1601053504450">
       <screen x="0" y="40" width="3440" height="1400" />
     </state>
-    <state width="2099" height="666" key="GridCell.Tab.0.bottom/0.40.3440.1400@0.40.3440.1400" timestamp="1600801027969" />
-    <state width="2099" height="666" key="GridCell.Tab.0.center" timestamp="1600801027969">
+    <state x="2141" y="473" key="FileChooserDialogImpl/0.40.3440.1400@0.40.3440.1400" timestamp="1601053504450" />
+    <state width="2171" height="442" key="GridCell.Tab.0.bottom" timestamp="1601230100966">
       <screen x="0" y="40" width="3440" height="1400" />
     </state>
-    <state width="2099" height="666" key="GridCell.Tab.0.center/0.40.3440.1400@0.40.3440.1400" timestamp="1600801027969" />
-    <state width="2099" height="666" key="GridCell.Tab.0.left" timestamp="1600801027968">
+    <state width="2171" height="442" key="GridCell.Tab.0.bottom/0.40.3440.1400@0.40.3440.1400" timestamp="1601230100966" />
+    <state width="2171" height="442" key="GridCell.Tab.0.center" timestamp="1601230100966">
       <screen x="0" y="40" width="3440" height="1400" />
     </state>
-    <state width="2099" height="666" key="GridCell.Tab.0.left/0.40.3440.1400@0.40.3440.1400" timestamp="1600801027968" />
-    <state width="2099" height="666" key="GridCell.Tab.0.right" timestamp="1600801027969">
+    <state width="2171" height="442" key="GridCell.Tab.0.center/0.40.3440.1400@0.40.3440.1400" timestamp="1601230100966" />
+    <state width="2171" height="442" key="GridCell.Tab.0.left" timestamp="1601230100966">
       <screen x="0" y="40" width="3440" height="1400" />
     </state>
-    <state width="2099" height="666" key="GridCell.Tab.0.right/0.40.3440.1400@0.40.3440.1400" timestamp="1600801027969" />
+    <state width="2171" height="442" key="GridCell.Tab.0.left/0.40.3440.1400@0.40.3440.1400" timestamp="1601230100966" />
+    <state width="2171" height="442" key="GridCell.Tab.0.right" timestamp="1601230100966">
+      <screen x="0" y="40" width="3440" height="1400" />
+    </state>
+    <state width="2171" height="442" key="GridCell.Tab.0.right/0.40.3440.1400@0.40.3440.1400" timestamp="1601230100966" />
     <state x="1877" y="364" key="SettingsEditor" timestamp="1600800465466">
       <screen x="0" y="40" width="3440" height="1400" />
     </state>
     <state x="1877" y="364" key="SettingsEditor/0.40.3440.1400@0.40.3440.1400" timestamp="1600800465466" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/NumpyNet$classifer__1_.coverage" NAME="classifer (1) Coverage Results" MODIFIED="1600801027964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/NumpyNet$model.coverage" NAME="model Coverage Results" MODIFIED="1601217380395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
+    <SUITE FILE_PATH="coverage/NumpyNet$regression.coverage" NAME="regression Coverage Results" MODIFIED="1601223948199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/numpynet_experiment/simple_regression" />
+    <SUITE FILE_PATH="coverage/NumpyNet$classifier.coverage" NAME="classifier Coverage Results" MODIFIED="1601226520034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/numpynet_experiment/mnist_digit_classification" />
+    <SUITE FILE_PATH="coverage/NumpyNet$measure.coverage" NAME="measure Coverage Results" MODIFIED="1601219148516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/metric" />
+    <SUITE FILE_PATH="coverage/NumpyNet$classifer__1_.coverage" NAME="classifer (1) Coverage Results" MODIFIED="1601230100961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/numpynet_experiment/simple_classification" />
+    <SUITE FILE_PATH="coverage/NumpyNet$connected.coverage" NAME="connected Coverage Results" MODIFIED="1601217384054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/layers" />
   </component>
 </project>
