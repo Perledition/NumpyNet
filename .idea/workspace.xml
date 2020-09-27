@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b364e923-cf92-445e-b32e-8f3d8ea42cea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_meta/MnistExamples.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_meta/minst_run.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_meta/mnist_loss.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_meta/simple_classification_loss.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_meta/simple_run.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layers/general.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/numpynet_experiment/mnist_digit_classification/classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classifer.py" beforeDir="false" afterPath="$PROJECT_DIR$/numpynet_experiment/simple_classification/classifer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/activations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/connected.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/connected.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loss/cost.py" beforeDir="false" afterPath="$PROJECT_DIR$/loss/cost.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/metric/measure.py" beforeDir="false" afterPath="$PROJECT_DIR$/metric/measure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing_mnist.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/numpynet_experiment/mnist_digit_classification/decoding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/numpynet_experiment/mnist_digit_classification/classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/numpynet_experiment/mnist_digit_classification/classifier.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +224,7 @@
       <workItem from="1579115270512" duration="12000" />
       <workItem from="1600799418316" duration="2422000" />
       <workItem from="1601053355903" duration="154000" />
-      <workItem from="1601194238925" duration="31088000" />
+      <workItem from="1601194238925" duration="31502000" />
     </task>
     <servers />
   </component>
